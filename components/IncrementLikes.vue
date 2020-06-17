@@ -1,5 +1,5 @@
 <template>
-  <v-btn :key="likes" color="success" @click="incrementLikes">
+  <v-btn color="success" @click="incrementLikes">
     <v-icon color="red">mdi-heart</v-icon>
     <span>{{ likes }}</span>
   </v-btn>
@@ -25,7 +25,7 @@ export default {
       this.$route.params.id === undefined
         ? tempObj[this.$props.index].likes++
         : tempObj[this.$route.params.id].likes++
-      localStorage.setItem('articles', JSON.stringify(tempObj))
+      return localStorage.setItem('articles', JSON.stringify(tempObj))
     }
   }
 }
