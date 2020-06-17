@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+// import middleware from './.nuxt/middleware'
 
 export default {
   mode: 'universal',
@@ -22,7 +23,12 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: {
+    name: 'chasing-dots',
+    color: '#ff5638',
+    background: 'white',
+    height: '4px'
+  },
   /*
    ** Global CSS
    */
@@ -47,8 +53,26 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
+  /*
+  Auth0 Configuration
+  */
+  auth: {
+    redirect: {
+      login: '/',
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'dev-v-useasu.eu.auth0.com',
+        client_id: 'EvD7u8vYN73eh36eXjRToviSUSivc68N'
+      }
+    }
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -61,7 +85,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
