@@ -4,6 +4,7 @@
       <p>Date: {{ date }}</p>
       <p>id: {{ id }}</p>
       <p>Author: {{ author }}</p>
+      <v-file-input label="Insert Image/Video" accept="images/*"></v-file-input>
       <v-text-field id="id" v-model="title" name="title" label="Title">
       </v-text-field>
 
@@ -32,7 +33,8 @@ export default {
       date: '',
       description: '',
       author: this.$auth.user.email,
-      likes: 0
+      likes: 0,
+      thumbnail: ''
     }
   },
   layout: 'navigation',
@@ -43,15 +45,15 @@ export default {
   methods: {
     // add article in local storage
     storeArticle() {
-      let tempObj = []
+      let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
-      tempObj.push(this.$data)
+      tempObj.unshift(this.$data)
       localStorage.setItem('articles', JSON.stringify(tempObj))
       this.id++
       this.title = ''
       this.text = ''
-      this.date = ''
       this.description = ''
+      this.thumbnail = ''
     }
   },
   head() {

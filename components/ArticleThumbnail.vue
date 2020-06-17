@@ -4,7 +4,7 @@
     max-width="640"
     color="#26c6da"
   >
-    <nuxt-link :to="'/articles/' + id">
+    <nuxt-link :to="'/articles/' + index">
       <v-img
         aspect-ratio="2.1"
         position="bottom"
@@ -14,6 +14,7 @@
       <v-card-title primary-title>
         {{ title }}
       </v-card-title>
+      <v-card-subtitle>{{ date }} - by {{ author }}</v-card-subtitle>
       <v-card-text>
         {{ description }}
       </v-card-text>
@@ -27,6 +28,7 @@ import IncrementLikes from '@/components/IncrementLikes'
 export default {
   components: { IncrementLikes },
   props: {
+    date: { type: String, required: true },
     index: { type: Number, required: true },
     thumbnail: { type: String, required: true },
     title: { type: String, required: true },
@@ -34,8 +36,7 @@ export default {
     id: { type: Number, required: true },
     author: { type: String, required: true },
     likes: { type: Number, required: true }
-  },
-  mounted() {}
+  }
 }
 </script>
 
