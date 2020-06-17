@@ -18,12 +18,24 @@
         {{ description }}
       </v-card-text>
     </nuxt-link>
+    <IncrementLikes :likes="likes" :index="index" />
   </v-card>
 </template>
 
 <script>
+import IncrementLikes from '@/components/IncrementLikes'
 export default {
-  props: ['thumbnail', 'title', 'description', 'id']
+  components: { IncrementLikes },
+  props: {
+    index: { type: Number, required: true },
+    thumbnail: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    id: { type: Number, required: true },
+    author: { type: String, required: true },
+    likes: { type: Number, required: true }
+  },
+  mounted() {}
 }
 </script>
 

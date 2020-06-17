@@ -15,7 +15,9 @@ import { createStore } from './store.js'
 import nuxt_plugin_workbox_5bbe4ae1 from 'nuxt_plugin_workbox_5bbe4ae1' // Source: ./workbox.js (mode: 'client')
 import nuxt_plugin_nuxticons_1bdac163 from 'nuxt_plugin_nuxticons_1bdac163' // Source: ./nuxt-icons.js (mode: 'all')
 import nuxt_plugin_plugin_c28d2e42 from 'nuxt_plugin_plugin_c28d2e42' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_toast_869a6098 from 'nuxt_plugin_toast_869a6098' // Source: ./toast.js (mode: 'client')
 import nuxt_plugin_axios_1efaf9f6 from 'nuxt_plugin_axios_1efaf9f6' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_c7cb0efe from 'nuxt_plugin_plugin_c7cb0efe' // Source: ./auth/plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -62,7 +64,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s - AgeWage-nuxt","title":"AgeWage-nuxt","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"ageWage Assigment"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"AgeWage-nuxt"},{"hid":"author","name":"author","content":"Vincenzo"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"AgeWage-nuxt"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"AgeWage-nuxt"},{"hid":"og:description","name":"og:description","property":"og:description","content":"ageWage Assigment"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.c97c1b62.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.5f6a36.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.5f6a36.png","sizes":"512x512"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
+    head: {"titleTemplate":"%s - AgeWage-nuxt","title":"AgeWage-nuxt","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"ageWage Assigment"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"AgeWage-nuxt"},{"hid":"author","name":"author","content":"Vincenzo"},{"hid":"theme-color","name":"theme-color","content":"#ff5638"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"AgeWage-nuxt"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"AgeWage-nuxt"},{"hid":"og:description","name":"og:description","property":"og:description","content":"ageWage Assigment"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.f5b0798c.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.5f6a36.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.5f6a36.png","sizes":"512x512"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -189,8 +191,16 @@ async function createApp (ssrContext) {
     await nuxt_plugin_plugin_c28d2e42(app.context, inject)
   }
 
+  if (process.client && typeof nuxt_plugin_toast_869a6098 === 'function') {
+    await nuxt_plugin_toast_869a6098(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_axios_1efaf9f6 === 'function') {
     await nuxt_plugin_axios_1efaf9f6(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_plugin_c7cb0efe === 'function') {
+    await nuxt_plugin_plugin_c7cb0efe(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

@@ -2,19 +2,18 @@
   <v-app dark>
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
+      Go Back to Homepage
     </h1>
     <h1 v-else>
       {{ otherError }}
+      Go Back to Homepage
     </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
   </v-app>
 </template>
 
 <script>
 export default {
-  layout: 'empty',
+  layout: 'navigation',
   props: {
     error: {
       type: Object,

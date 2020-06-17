@@ -1,28 +1,30 @@
 <template>
-  <div v-if="articles[$route.params.id] !== undefined">
-    <v-img
-      :src="`${articles[$route.params.id].thumbnail}`"
-      aspect-ratio="2.1"
-    ></v-img>
-    <h1>{{ articles[$route.params.id].title }}</h1>
-    <article>{{ articles[$route.params.id].text }}</article>
-  </div>
-  <div v-else>
-    <v-app dark>
-      <NuxtLink to="/">
-        Home page
-      </NuxtLink>
-    </v-app>
+  <div>
+    <v-img :src="`${article.thumbnail}`" aspect-ratio="2.1">
+      <IncrementLikes :likes="article.likes" />
+    </v-img>
+    <h1>{{ article.title }}</h1>
+    <article>{{ article.text }}</article>
   </div>
 </template>
 
 <script>
+import IncrementLikes from '@/components/IncrementLikes'
 export default {
-  computed: {
-    articles() {
-      return this.$store.state.articles.list
+  components: {
+    IncrementLikes
+  },
+  data() {
+    return {
+      article: {}
     }
-  }
+  },
+  mounted() {
+    this.article = JSON.parse(localStorage.getItem('articles'))[
+      this.$route.params.id
+    ]
+  },
+  layout: 'navigation'
 }
 </script>
 

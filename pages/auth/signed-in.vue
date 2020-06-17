@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-select items="items" label="Sort" overflow target="#target"></v-select>
+    Signing In...
   </div>
 </template>
 

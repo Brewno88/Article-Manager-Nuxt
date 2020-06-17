@@ -1,45 +1,45 @@
 <template>
-  <v-app>
-    <v-app-bar fixed>
-      <Account />
-      <div class="modify-view">
-        <SortArticles />
-        <FilterArticles />
-      </div>
-    </v-app-bar>
-
-    <v-main>
-      <div v-for="article in articles" :key="article.id">
+  <v-main>
+    <div v-if="this.$auth.loggedIn === true">
+      <div v-for="(article, index) in articles" :key="article.id">
         <ArticleThumbnail
           :id="article.id"
           :title="article.title"
           :thumbnail="article.thumbnail"
           :description="article.description"
+          :author="article.author"
+          :likes="article.likes"
+          :index="index"
+          @change="updateArticles"
         />
-        {{ title }}
       </div>
-    </v-main>
-  </v-app>
+    </div>
+    <div v-else><h1>Please Sign in</h1></div>
+  </v-main>
 </template>
 
 <script>
-import ArticleThumbnail from '../components/ArticleThumbnail'
-import Account from '../components/Account'
-import FilterArticles from '../components/FilterArticles'
-import SortArticles from '../components/SortArticles'
+import ArticleThumbnail from '@/components/ArticleThumbnail'
 
 export default {
   components: {
-    ArticleThumbnail,
-    Account,
-    SortArticles,
-    FilterArticles
+    ArticleThumbnail
   },
-  computed: {
-    articles() {
-      return this.$store.state.articles.list
+  data() {
+    return {
+      articles: {}
     }
-  }
+  },
+  mounted() {
+    this.$data.articles = JSON.parse(localStorage.getItem('articles'))
+  },
+  methods: {
+    updateArticles() {
+      this.$data.articles = JSON.parse(localStorage.getItem('articles'))
+      console.log(this.$data.articles)
+    }
+  },
+  layout: 'navigation'
 }
 </script>
 

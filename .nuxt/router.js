@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _c7eae904 = () => interopDefault(import('../pages/addArticle.vue' /* webpackChunkName: "pages/addArticle" */))
+const _4a1a3ab8 = () => interopDefault(import('../pages/auth/signed-in.vue' /* webpackChunkName: "pages/auth/signed-in" */))
 const _4f53f558 = () => interopDefault(import('../pages/articles/_id/index.vue' /* webpackChunkName: "pages/articles/_id/index" */))
 const _19ec6d79 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -23,6 +25,14 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/addArticle",
+    component: _c7eae904,
+    name: "addArticle"
+  }, {
+    path: "/auth/signed-in",
+    component: _4a1a3ab8,
+    name: "auth-signed-in"
+  }, {
     path: "/articles/:id?",
     component: _4f53f558,
     name: "articles-id"
