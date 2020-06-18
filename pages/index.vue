@@ -12,7 +12,7 @@
           dense
           solo
           dark
-          @input="articles.sort(filterArticles(sortBy, sortOrder))"
+          @input="updateLocal"
         />
       </v-col>
       <v-col class="d-flex" sm="3">
@@ -26,7 +26,7 @@
           dense
           solo
           dark
-          @input="filterArticles"
+          @input="updateLocal"
         />
       </v-col>
     </v-row>
@@ -69,28 +69,29 @@ export default {
     this.$data.articles = JSON.parse(localStorage.getItem('articles'))
   },
   methods: {
-    // filterArticle() {
-    // let tempObj = {}
-    // tempObj = JSON.parse(localStorage.getItem('articles'))
-    // }
-    filterArticles(key, order = this.$data.sortOrder) {
-      return function innerSort(a, b) {
-        if (a[key] === undefined || b[key] === undefined) {
-          // property doesn't exist on either object
-          return 0
-        }
+    compare(a, b) {
+      const key = this.$data.sortBy
+      const order = this.$data.sortOrder
 
-        const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key]
-        const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key]
-
-        let comparison = 0
-        if (varA > varB) {
-          comparison = 1
-        } else if (varA < varB) {
-          comparison = -1
-        }
-        return order === 'desc' ? comparison * -1 : comparison
+      if (!a[key] || !b[key] === undefined) {
+        return 0
       }
+
+      const artA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key]
+      const artB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key]
+
+      let comparison = 0
+      artA > artB ? (comparison = 1) : (comparison = -1)
+
+      return order === 'desc' ? comparison * -1 : comparison
+    },
+    updateLocal() {
+      let tempObj = {}
+      tempObj = JSON.parse(localStorage.getItem('articles'))
+
+      tempObj.sort(this.compare)
+
+      localStorage.setItem('articles', JSON.stringify(tempObj))
     }
   },
   layout: 'navigation'

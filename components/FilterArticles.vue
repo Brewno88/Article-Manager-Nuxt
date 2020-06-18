@@ -9,7 +9,7 @@
     dense
     solo
     dark
-    @input="filterArticles"
+    @input="updateLocal()"
   />
 </template>
 
@@ -45,6 +45,14 @@ export default {
         }
         return order === 'desc' ? comparison * -1 : comparison
       }
+    },
+    updateLocal() {
+      // let tempObj = {}
+      // tempObj = JSON.parse(localStorage.getItem('articles')).filterArticles(
+      //   this.$data.selected,
+      //   this.$data.sortOrder
+      // )
+      console.log('hello')
     }
   }
 }
