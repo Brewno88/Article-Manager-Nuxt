@@ -1,3 +1,4 @@
+<!-- Go back to Homapage when in article's page -->
 <template>
   <v-btn color="orange" small>
     <nuxt-link to="/">

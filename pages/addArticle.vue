@@ -1,8 +1,8 @@
+<!-- Add Article Page -->
 <template>
   <v-container grid-list-xl>
     <v-form>
       <p>Date: {{ date }}</p>
-      <p>id: {{ id }}</p>
       <p>Author: {{ author }}</p>
       <v-text-field
         v-model="thumbnail"
@@ -43,7 +43,7 @@ export default {
     this.date = `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()} - ${new Date().getHours()}:${new Date().getMinutes()}`
   },
   methods: {
-    // add article in local storage
+    // add article in local storage and reset fileds
     storeArticle() {
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
@@ -54,10 +54,6 @@ export default {
       this.text = ''
       this.description = ''
       this.thumbnail = ''
-    },
-    // getselected file
-    onSelectFile(event) {
-      console.log(event)
     }
   },
   head() {

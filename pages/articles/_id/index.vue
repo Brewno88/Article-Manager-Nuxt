@@ -1,3 +1,4 @@
+<!-- Article Page -->
 <template>
   <div>
     <v-img :src="`${article.thumbnail}`" aspect-ratio="2.1"> </v-img>

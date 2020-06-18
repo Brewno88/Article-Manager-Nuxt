@@ -2,9 +2,16 @@
   <v-btn
     color="success"
     absolute
-    small
+    right
     fab
-    style="right: 1rem; transform: translateY(-20px)"
+    small
+    :style="{
+      transform:
+        this.$route.params.id === undefined
+          ? 'translateY(-1.5rem)'
+          : 'translateY(-2rem)',
+      padding: '0 1.6rem'
+    }"
     @click="incrementLikes"
   >
     <v-icon color="red">mdi-heart</v-icon>
@@ -49,8 +56,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-button {
-  z-index: 1000;
-}
-</style>
+<style lang="scss" scoped></style>

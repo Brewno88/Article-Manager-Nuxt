@@ -1,7 +1,9 @@
+<!-- Main Page -->
 <template>
   <v-main style="margin: 0 1rem">
     <div v-if="this.$auth.loggedIn === true">
       <v-row justify="center">
+        <!-- Sort Asc-Desc dropdown -->
         <v-col class="d-flex" sm="3">
           <v-select
             v-model="sortOrder"
@@ -16,6 +18,7 @@
             @input="updateOrder"
           />
         </v-col>
+        <!-- Sort by dropdown -->
         <v-col class="d-flex" sm="3">
           <v-select
             v-model="sortBy"
@@ -31,7 +34,7 @@
           />
         </v-col>
       </v-row>
-
+      <!-- Articles Card -->
       <div v-for="(article, index) in articles" :key="article.id">
         <ArticleCard
           :id="article.id"
@@ -45,7 +48,7 @@
         />
       </div>
     </div>
-    <div v-else><h1>Please Sign in</h1></div>
+    <div v-else><h1 style="margin-top: 2rem">Please Sign in</h1></div>
   </v-main>
 </template>
 
@@ -69,6 +72,7 @@ export default {
     this.$data.articles = JSON.parse(localStorage.getItem('articles'))
   },
   methods: {
+    // Compare each article and return ascending or descending order
     compare(a, b) {
       const key = this.$data.sortBy
       const order = this.$data.sortOrder
@@ -85,14 +89,19 @@ export default {
 
       return order === 'desc' ? comparison * -1 : comparison
     },
+    //  sort local Storage and update current component
     updateOrder(selected) {
+      // store user dropdown selection in component's data
       selected === 'desc' || selected === 'asc'
         ? (this.$data.sortOrder = selected)
         : (this.$data.sortBy = selected)
+      //  sort local storage order based on user selection
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
       tempObj.sort(this.compare)
+      // update component's articles
       this.$data.articles = tempObj
+      // update local storage
       localStorage.setItem('articles', JSON.stringify(tempObj))
     }
   },

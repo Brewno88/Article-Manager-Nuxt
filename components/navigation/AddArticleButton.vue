@@ -1,3 +1,4 @@
+<!-- Redirect to Add Articole page -->
 <template>
   <v-btn color="success" small>
     <nuxt-link to="/addArticle">+ Add Article</nuxt-link>

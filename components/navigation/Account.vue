@@ -1,14 +1,16 @@
 <template>
-  <div v-if="$auth.loggedIn">
-    <!-- Log Out -->
-    <v-btn color="warning" small @click="logoutUser()">
-      <h3>Log Out</h3>
-    </v-btn>
-  </div>
-  <div v-else="">
-    <v-btn color="#26c6da" @click="loginUser()">
-      <h3>Log In/Register</h3>
-    </v-btn>
+  <div>
+    <!-- If user Logged In show Logout button, else Login/Register Button -->
+    <div v-if="$auth.loggedIn" class="d-flex flex-column-reverse align-center">
+      <v-btn color="warning" small @click="logoutUser()">
+        <h3>Log Out</h3>
+      </v-btn>
+    </div>
+    <div v-else="">
+      <v-btn color="#26c6da" @click="loginUser()">
+        <h3>Log In/Register</h3>
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -18,11 +20,9 @@ export default {
   methods: {
     loginUser(loginInfo) {
       this.$auth.loginWith('auth0')
-      // alert('You pressed a button')
     },
     logoutUser() {
       this.$auth.logout()
-      // alert('You pressed a button')
     }
   }
 }

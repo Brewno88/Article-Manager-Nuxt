@@ -1,5 +1,4 @@
 import colors from 'vuetify/es5/util/colors'
-// import middleware from './.nuxt/middleware'
 
 export default {
   mode: 'universal',
@@ -83,7 +82,6 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <h3 style="margin-top: 2rem">
     Signing In...
-  </div>
+  </h3>
 </template>
 
 <script>

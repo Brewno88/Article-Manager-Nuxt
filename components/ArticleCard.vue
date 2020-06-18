@@ -1,25 +1,37 @@
 <template>
+  <!-- Card Wrapper -->
   <v-card
     class="article article--thumb mx-auto"
     max-width="640"
-    color="#26c6da"
+    color="#E8F5E9"
     style=""
   >
+    <!-- Image link to article -->
     <nuxt-link :to="'/articles/' + index">
       <v-img
         aspect-ratio="2.1"
-        position="bottom"
-        :style="{ backgroundImage: `url(${thumbnail})` }"
+        :style="{
+          backgroundImage: `url(${thumbnail})`,
+          backgroundSize: 'cover',
+          zIndex: 1
+        }"
       />
-
-      <IncrementLikes :likes="likes" :index="index" />
-      <v-card-title primary-title>
-        {{ title }}
-      </v-card-title>
-      <v-card-subtitle>{{ date }} - by {{ author }}</v-card-subtitle>
-      <v-card-text>
-        {{ description }}
-      </v-card-text>
+    </nuxt-link>
+    <!-- Increment Likes Button -->
+    <IncrementLikes :likes="likes" :index="index" />
+    <!-- Details section (link too) -->
+    <nuxt-link :to="'/articles/' + index">
+      <v-container grid-list-xs>
+        <h1 class="black--text" style="font-size: 1.5rem; margin-bottom: .7rem">
+          {{ title }}
+        </h1>
+        <h3 style="font-size: .7rem; color: #757575">
+          {{ date }} - by {{ author }}
+        </h3>
+        <p style="color: #424242; margin-top: 1rem;">
+          {{ description }}
+        </p>
+      </v-container>
     </nuxt-link>
   </v-card>
 </template>
