@@ -12,7 +12,7 @@
           dense
           solo
           dark
-          @input="updateLocal"
+          @input="updateOrder"
         />
       </v-col>
       <v-col class="d-flex" sm="3">
@@ -26,7 +26,7 @@
           dense
           solo
           dark
-          @input="updateLocal"
+          @input="updateOrder"
         />
       </v-col>
     </v-row>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       articles: {},
-      sortOrder: 'asc',
+      sortOrder: '',
       sortOrderOpt: ['asc', 'desc'],
       sortBy: '',
       sortByOpt: ['title', 'date', 'likes', 'author']
@@ -85,12 +85,14 @@ export default {
 
       return order === 'desc' ? comparison * -1 : comparison
     },
-    updateLocal() {
+    updateOrder(selected) {
+      selected === 'desc' || selected === 'asc'
+        ? (this.$data.sortOrder = selected)
+        : (this.$data.sortBy = selected)
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
-
       tempObj.sort(this.compare)
-
+      this.$data.articles = tempObj
       localStorage.setItem('articles', JSON.stringify(tempObj))
     }
   },

@@ -10,11 +10,13 @@ export default {
   props: {
     likes: {
       type: Number,
-      required: true
+      required: false,
+      default: 0
     },
     index: {
       type: Number,
-      required: true
+      required: false,
+      default: 0
     }
   },
   data() {
@@ -23,6 +25,8 @@ export default {
     }
   },
   methods: {
+    // increment temporary likes to add to likes from local Storage to temporary render correct amount
+    // and increment likes in local Storage
     incrementLikes() {
       this.$data.tempLikes++
       let tempObj = {}
