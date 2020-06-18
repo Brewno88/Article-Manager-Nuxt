@@ -1,37 +1,37 @@
 <template>
-  <v-main>
-    <v-row justify="center">
-      <v-col class="d-flex" sm="3">
-        <v-select
-          v-model="sortOrder"
-          :items="sortOrderOpt"
-          label="Sort"
-          target="#target"
-          filled
-          rounded
-          dense
-          solo
-          dark
-          @input="updateOrder"
-        />
-      </v-col>
-      <v-col class="d-flex" sm="3">
-        <v-select
-          v-model="sortBy"
-          :items="sortByOpt"
-          label="Filters"
-          target="#target"
-          filled
-          rounded
-          dense
-          solo
-          dark
-          @input="updateOrder"
-        />
-      </v-col>
-    </v-row>
-
+  <v-main style="margin: 0 1rem">
     <div v-if="this.$auth.loggedIn === true">
+      <v-row justify="center">
+        <v-col class="d-flex" sm="3">
+          <v-select
+            v-model="sortOrder"
+            :items="sortOrderOpt"
+            label="Sort"
+            target="#target"
+            filled
+            rounded
+            dense
+            solo
+            dark
+            @input="updateOrder"
+          />
+        </v-col>
+        <v-col class="d-flex" sm="3">
+          <v-select
+            v-model="sortBy"
+            :items="sortByOpt"
+            label="Filters"
+            target="#target"
+            filled
+            rounded
+            dense
+            solo
+            dark
+            @input="updateOrder"
+          />
+        </v-col>
+      </v-row>
+
       <div v-for="(article, index) in articles" :key="article.id">
         <ArticleCard
           :id="article.id"

@@ -1,5 +1,12 @@
 <template>
-  <v-btn color="success" @click="incrementLikes">
+  <v-btn
+    color="success"
+    absolute
+    small
+    fab
+    style="right: 1rem; transform: translateY(-20px)"
+    @click="incrementLikes"
+  >
     <v-icon color="red">mdi-heart</v-icon>
     <span>{{ likes + tempLikes }}</span>
   </v-btn>

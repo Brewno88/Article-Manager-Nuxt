@@ -42,7 +42,7 @@ export default {
         JSON.stringify([
           {
             author: 'contevin@icloud.com',
-            date: `15/5/2020`,
+            date: `15/5/2020 - 15:50`,
             description: `Here we have the description of the article Imperdiet quam torquent semper vehicula tincidunt porta ut magna ad `,
             id: 0,
             likes: 0,

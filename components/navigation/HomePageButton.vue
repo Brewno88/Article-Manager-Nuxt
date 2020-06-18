@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="orange">
+  <v-btn color="orange" small>
     <nuxt-link to="/">
       <v-icon>mdi-arrow-left</v-icon>
       <v-icon>mdi-home</v-icon>

@@ -1,10 +1,15 @@
 <template>
   <div>
-    <v-img :src="`${article.thumbnail}`" aspect-ratio="2.1">
+    <v-img :src="`${article.thumbnail}`" aspect-ratio="2.1"> </v-img>
+    <v-container grid-list-xl>
       <IncrementLikes :likes="article.likes" />
-    </v-img>
-    <h1>{{ article.title }}</h1>
-    <article>{{ article.text }}</article>
+      <h1>{{ article.title }}</h1>
+      <small class="font-weight-bold">Published On: {{ article.date }}</small>
+      <small class="font-weight-bold primary--text"
+        >Author: {{ article.author }},
+      </small>
+      <article style="margin-top: 1rem">{{ article.text }}</article>
+    </v-container>
   </div>
 </template>
 

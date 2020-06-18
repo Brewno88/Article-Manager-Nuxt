@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="success">
+  <v-btn color="success" small>
     <nuxt-link to="/addArticle">+ Add Article</nuxt-link>
   </v-btn>
 </template>

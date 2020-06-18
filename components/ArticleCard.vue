@@ -3,14 +3,16 @@
     class="article article--thumb mx-auto"
     max-width="640"
     color="#26c6da"
+    style=""
   >
     <nuxt-link :to="'/articles/' + index">
       <v-img
         aspect-ratio="2.1"
         position="bottom"
         :style="{ backgroundImage: `url(${thumbnail})` }"
-      >
-      </v-img>
+      />
+
+      <IncrementLikes :likes="likes" :index="index" />
       <v-card-title primary-title>
         {{ title }}
       </v-card-title>
@@ -19,7 +21,6 @@
         {{ description }}
       </v-card-text>
     </nuxt-link>
-    <IncrementLikes :likes="likes" :index="index" />
   </v-card>
 </template>
 
@@ -46,6 +47,6 @@ a {
   color: #ffffff;
 }
 .article {
-  margin: 2rem 0;
+  margin: 2rem 2rem;
 }
 </style>

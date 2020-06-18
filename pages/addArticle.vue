@@ -4,18 +4,18 @@
       <p>Date: {{ date }}</p>
       <p>id: {{ id }}</p>
       <p>Author: {{ author }}</p>
-      <v-file-input label="Insert Image/Video" accept="images/*"></v-file-input>
-      <v-text-field id="id" v-model="title" name="title" label="Title">
-      </v-text-field>
-
+      <v-text-field
+        v-model="thumbnail"
+        name="thumbnail"
+        label="Add Image Link"
+      />
+      <v-text-field id="id" v-model="title" name="title" label="Title" />
       <v-text-field
         v-model="description"
         name="description"
         label="Description"
-      >
-      </v-text-field>
-
-      <v-textarea v-model="text" name="text" label="Article Text"></v-textarea>
+      />
+      <v-textarea v-model="text" name="text" label="Article Text" />
     </v-form>
 
     <v-btn color="success" @click="storeArticle()">Add Article</v-btn>
@@ -40,7 +40,7 @@ export default {
   layout: 'navigation',
   mounted() {
     this.id = JSON.parse(localStorage.getItem('articles')).length
-    this.date = `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`
+    this.date = `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()} - ${new Date().getHours()}:${new Date().getMinutes()}`
   },
   methods: {
     // add article in local storage
@@ -54,6 +54,10 @@ export default {
       this.text = ''
       this.description = ''
       this.thumbnail = ''
+    },
+    // getselected file
+    onSelectFile(event) {
+      console.log(event)
     }
   },
   head() {
