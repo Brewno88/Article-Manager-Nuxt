@@ -33,7 +33,7 @@
 
     <div v-if="this.$auth.loggedIn === true">
       <div v-for="(article, index) in articles" :key="article.id">
-        <ArticleThumbnail
+        <ArticleCard
           :id="article.id"
           :title="article.title"
           :thumbnail="article.thumbnail"
@@ -50,11 +50,11 @@
 </template>
 
 <script>
-import ArticleThumbnail from '@/components/ArticleThumbnail'
+import ArticleCard from '@/components/ArticleCard'
 
 export default {
   components: {
-    ArticleThumbnail
+    ArticleCard
   },
   data() {
     return {
