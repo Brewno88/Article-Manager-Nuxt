@@ -127,7 +127,7 @@ export default {
       tempObj.splice(tempObj[this.$route.params.id], 1)
       localStorage.setItem('articles', JSON.stringify(tempObj))
       // return to homepage
-      window.location = process.env.BASE_URL
+      window.location = 'http://localhost:3000'
     },
     // dealing with image uploaded
     onFileChange(event) {
