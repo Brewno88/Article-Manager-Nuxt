@@ -1,8 +1,11 @@
 <!-- Article Page -->
 <template>
-  <div>
-    <v-img :src="`${article.thumbnail}`" aspect-ratio="2.1"> </v-img>
-    <v-container grid-list-xl>
+  <v-app>
+    <div v-show="this.$auth.user.email === article.author">
+      <UpdateArticle :index="this.$route.params.id" />
+    </div>
+    <v-img :src="`${article.image}`" aspect-ratio="2.1"> </v-img>
+    <v-container grid-list-xl style="position: relative">
       <IncrementLikes :likes="article.likes" />
       <h1>{{ article.title }}</h1>
       <small class="font-weight-bold">Published On: {{ article.date }}</small>
@@ -11,14 +14,17 @@
       </small>
       <article style="margin-top: 1rem">{{ article.text }}</article>
     </v-container>
-  </div>
+  </v-app>
 </template>
 
 <script>
 import IncrementLikes from '@/components/IncrementLikes'
+import UpdateArticle from '@/components/UpdateArticle.vue'
+
 export default {
   components: {
-    IncrementLikes
+    IncrementLikes,
+    UpdateArticle
   },
   data() {
     return {

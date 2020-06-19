@@ -7,9 +7,9 @@
 
       <v-file-input
         ref="imageInput"
-        label="Add Image for Thumbnail"
+        label="Add New Image for Thumbnail"
         show-size
-        :rules="checkFile"
+        :rules="fileValid"
         accept="image/*"
         @change="onFileChange"
       />
@@ -22,30 +22,46 @@
         v-model="article.title"
         name="title"
         label="Title"
-        :rules="titleLength"
+        :rules="titleValid"
       />
       <v-text-field
         v-model="article.description"
         name="description"
         label="Description"
-        :rules="descLength"
+        :rules="descValid"
       />
       <v-textarea
         v-model="article.text"
         name="text"
         label="Article Text"
-        :rules="required"
+        :rules="textValid"
       />
     </v-form>
 
-    <v-btn color="success" :disabled="!valid" @click="storeArticle"
-      >Add Article</v-btn
+    <v-btn color="success" :disabled="!valid" @click="updateArticle"
+      >Update Article</v-btn
     >
-    <div v-show="errorMessage.includes('exceeded the quota')">
-      <v-alert type="error" elevation="5" style="position: fixed; bottom:1rem;">
-        File selected needs to be smaller than 5MB
-      </v-alert>
-    </div>
+    <v-btn :disabled="!deleteBtn" color="error" @click="deleteArticle"
+      >Delete Article</v-btn
+    >
+    <v-alert
+      v-if="errorMessage.includes('exceeded the quota')"
+      type="error"
+      elevation="5"
+      style="position: fixed; bottom:1rem;"
+    >
+      {{ errorMessage }}
+    </v-alert>
+
+    <v-alert
+      v-else-if="!deleteBtn"
+      type="error"
+      elevation="5"
+      style="position: fixed; left: 50%; bottom: 50%; transform: translateX(-50%)"
+      prominent
+    >
+      Article Deleted! Redirecting to Homepage...
+    </v-alert>
   </v-container>
 </template>
 
@@ -54,36 +70,34 @@ export default {
   name: 'AddArticlePage',
   data() {
     return {
-      article: {
-        id: 0,
-        author: this.$auth.user.email,
-        date: '',
-        title: '',
-        description: '',
-        likes: 0,
-        image: '',
-        imageFileName: '',
-        text: ''
-      },
+      article: {},
+      deleteBtn: true,
       errorMessage: '',
       // From Validation Options and Rules
       valid: false,
-      required: [(v) => (v && v.length > 0) || 'This filed is required!'],
-      checkFile: [
-        (v) =>
-          (v && v.size <= 5000000) ||
-          (v && v.size >= 5000000
-            ? 'Needs to be less than 5MB'
-            : 'This field is required!')
+      textValid: [(v) => (v && v.length > 0) || 'This filed is required!'],
+      fileValid: [
+        (v) => {
+          if (!v && this.article.image !== undefined) {
+            return 'This field is required!'
+          } else if (v) {
+            if (v.size >= 5000000) {
+              return 'Image size must be less than 5MB'
+            } else if (v.size <= 5000000) {
+              return true
+            }
+          }
+          return true
+        }
       ],
-      descLength: [
+      descValid: [
         (v) =>
           (v && v.length <= 300) ||
           (v && v.length >= 300
             ? 'Description must be less than 300 chars'
             : 'This field is required!')
       ],
-      titleLength: [
+      titleValid: [
         (v) =>
           (v && v.length <= 100) ||
           (v && v.length >= 100
@@ -94,24 +108,26 @@ export default {
   },
   layout: 'navigation',
   mounted() {
-    this.article.id = Math.ceil(Math.random() * 10000000)
-    this.article.date = `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()} - ${new Date().getHours()}:${new Date().getMinutes()}`
+    this.article = JSON.parse(localStorage.getItem('articles'))[
+      this.$route.params.id
+    ]
   },
   methods: {
     // add article in local storage and reset fields
-    storeArticle() {
+    updateArticle() {
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
-      tempObj.unshift(this.article)
-
-      try {
-        localStorage.setItem('articles', JSON.stringify(tempObj))
-        this.article.image = ''
-        this.article.id = Math.ceil(Math.random() * 10000000)
-        this.$refs.addArticleForm.reset()
-      } catch (error) {
-        this.errorMessage = error.message
-      }
+      tempObj[this.$route.params.id] = this.article
+      localStorage.setItem('articles', JSON.stringify(tempObj))
+    },
+    deleteArticle() {
+      this.deleteBtn = false
+      let tempObj = {}
+      tempObj = JSON.parse(localStorage.getItem('articles'))
+      tempObj.splice(tempObj[this.$route.params.id], 1)
+      localStorage.setItem('articles', JSON.stringify(tempObj))
+      // return to homepage
+      window.location = process.env.BASE_URL
     },
     // dealing with image uploaded
     onFileChange(event) {
@@ -127,14 +143,11 @@ export default {
         try {
           reader.onload = (e) => {
             this.article.image = e.target.result
-            this.article.imageFileName = file.name
-            console.log(e)
           }
         } catch (error) {
           this.errorMessage = error
         }
         reader.readAsDataURL(file)
-        console.log(file)
       } else this.image = ''
     },
     // reset Input Field

@@ -12,7 +12,7 @@
       <v-img
         aspect-ratio="2.1"
         :style="{
-          backgroundImage: `url(${thumbnail})`,
+          backgroundImage: `url(${image})`,
           backgroundSize: 'cover',
           zIndex: 1
         }"
@@ -44,7 +44,7 @@ export default {
   props: {
     date: { type: String, required: true },
     index: { type: Number, required: true },
-    thumbnail: { type: String, required: true },
+    image: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
     id: { type: Number, required: true },

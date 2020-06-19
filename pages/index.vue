@@ -10,11 +10,9 @@
             :items="sortOrderOpt"
             label="Sort"
             target="#target"
-            filled
             rounded
+            filled
             dense
-            solo
-            dark
             @input="updateOrder"
           />
         </v-col>
@@ -28,8 +26,6 @@
             filled
             rounded
             dense
-            solo
-            dark
             @input="updateOrder"
           />
         </v-col>
@@ -39,7 +35,7 @@
         <ArticleCard
           :id="article.id"
           :title="article.title"
-          :thumbnail="article.thumbnail"
+          :image="article.image"
           :description="article.description"
           :author="article.author"
           :likes="article.likes"
