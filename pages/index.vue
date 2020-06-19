@@ -69,13 +69,13 @@ export default {
     }
   },
   mounted() {
-    this.$data.articles = JSON.parse(localStorage.getItem('articles'))
+    this.articles = JSON.parse(localStorage.getItem('articles'))
   },
   methods: {
     // Compare each article and return ascending or descending order
     compare(a, b) {
-      const key = this.$data.sortBy
-      const order = this.$data.sortOrder
+      const key = this.sortBy
+      const order = this.sortOrder
 
       if (!a[key] || !b[key] === undefined) {
         return 0
@@ -93,14 +93,14 @@ export default {
     updateOrder(selected) {
       // store user dropdown selection in component's data
       selected === 'desc' || selected === 'asc'
-        ? (this.$data.sortOrder = selected)
-        : (this.$data.sortBy = selected)
+        ? (this.sortOrder = selected)
+        : (this.sortBy = selected)
       //  sort local storage order based on user selection
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
       tempObj.sort(this.compare)
       // update component's articles
-      this.$data.articles = tempObj
+      this.articles = tempObj
       // update local storage
       localStorage.setItem('articles', JSON.stringify(tempObj))
     }

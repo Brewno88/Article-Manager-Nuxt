@@ -1,10 +1,11 @@
 <template>
   <!-- Card Wrapper -->
+
   <v-card
     class="article article--thumb mx-auto"
     max-width="640"
     color="#E8F5E9"
-    style=""
+    elevation="5"
   >
     <!-- Image link to article -->
     <nuxt-link :to="'/articles/' + index">

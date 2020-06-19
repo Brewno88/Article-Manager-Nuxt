@@ -42,12 +42,12 @@ export default {
     // increment temporary likes to add to likes from local Storage to temporary render correct amount
     // and increment likes in local Storage
     incrementLikes() {
-      this.$data.tempLikes++
+      this.tempLikes++
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
       // If in not in article page get article by its Index prop (from index page) else from the its route id
       this.$route.params.id === undefined
-        ? tempObj[this.$props.index].likes++
+        ? tempObj[this.index].likes++
         : tempObj[this.$route.params.id].likes++
 
       return localStorage.setItem('articles', JSON.stringify(tempObj))

@@ -33,7 +33,6 @@ export default {
     HomePageButton
   },
   mounted() {
-    console.log(process.env)
     // Add 1 dummy article to local storage at first start
     if (
       process.browser &&
