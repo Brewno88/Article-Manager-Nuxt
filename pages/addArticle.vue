@@ -109,6 +109,7 @@ export default {
         this.article.image = ''
         this.article.id = Math.ceil(Math.random() * 10000000)
         this.$refs.addArticleForm.reset()
+        window.location = 'localhost:3000'
       } catch (error) {
         this.errorMessage = error.message
       }
