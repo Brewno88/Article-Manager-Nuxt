@@ -119,15 +119,18 @@ export default {
       tempObj = JSON.parse(localStorage.getItem('articles'))
       tempObj[this.$route.params.id] = this.article
       localStorage.setItem('articles', JSON.stringify(tempObj))
+      // return to homepage
+      window.location.href = window.location.origin
     },
     deleteArticle() {
       this.deleteBtn = false
       let tempObj = {}
+
       tempObj = JSON.parse(localStorage.getItem('articles'))
       tempObj.splice(tempObj[this.$route.params.id], 1)
       localStorage.setItem('articles', JSON.stringify(tempObj))
       // return to homepage
-      window.location = 'http://localhost:3000'
+      window.location.href = window.location.origin
     },
     // dealing with image uploaded
     onFileChange(event) {
