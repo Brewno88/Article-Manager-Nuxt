@@ -130,13 +130,11 @@ export default {
           reader.onload = (e) => {
             this.article.image = e.target.result
             this.article.imageFileName = file.name
-            console.log(e)
           }
         } catch (error) {
           this.errorMessage = error
         }
         reader.readAsDataURL(file)
-        console.log(file)
       } else this.image = ''
     },
     // reset Input Field
