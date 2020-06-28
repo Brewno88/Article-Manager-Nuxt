@@ -1,7 +1,7 @@
 <!-- Article Page -->
 <template>
   <v-app>
-    <div v-show="this.$auth.user.email === article.author">
+    <div v-show="this.$nuxt.$auth.user.email === article.author">
       <UpdateArticle :index="this.$route.params.id" />
     </div>
     <v-img :src="`${article.image}`" aspect-ratio="2.1"> </v-img>

@@ -1,7 +1,7 @@
 <!-- Main Page -->
 <template>
   <v-main style="margin: 0 1rem">
-    <div v-if="this.$auth.loggedIn === true">
+    <div v-if="this.$nuxt.$auth.loggedIn === true">
       <v-row justify="center">
         <!-- Sort Asc-Desc dropdown -->
         <v-col class="d-flex" sm="3">

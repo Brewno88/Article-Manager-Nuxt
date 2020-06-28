@@ -9,7 +9,7 @@
       </div>
       <!-- Don't show Add Article if not logged in -->
       <v-spacer />
-      <div v-show="this.$auth.loggedIn === true">
+      <div v-show="this.$nuxt.$auth.loggedIn === true">
         <AddArticleButton />
       </div>
 
