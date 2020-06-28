@@ -3,7 +3,7 @@
   <v-app>
     <v-app-bar dark rounded style="flex-grow: 0">
       <!-- Don't show Home Button in main page-->
-      <div v-show="$route.path !== '/'">
+      <div v-show="this.$nuxt.$route.path !== '/'">
         <HomePageButton />
         <v-spacer />
       </div>

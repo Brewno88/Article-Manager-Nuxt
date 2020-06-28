@@ -19,10 +19,10 @@ export default {
   name: 'Account',
   methods: {
     loginUser(loginInfo) {
-      this.$auth.loginWith('auth0')
+      this.$nuxt.$auth.loginWith('auth0')
     },
     logoutUser() {
-      this.$auth.logout()
+      this.$nuxt.$auth.logout()
     }
   }
 }

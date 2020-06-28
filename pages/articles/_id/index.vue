@@ -2,7 +2,7 @@
 <template>
   <v-app>
     <div v-show="this.$nuxt.$auth.user.email === article.author">
-      <UpdateArticle :index="this.$route.params.id" />
+      <UpdateArticle :index="this.$nuxt.$route.params.id" />
     </div>
     <v-img :src="`${article.image}`" aspect-ratio="2.1"> </v-img>
     <v-container grid-list-xl style="position: relative">
@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     this.article = JSON.parse(localStorage.getItem('articles'))[
-      this.$route.params.id
+      this.$nuxt.$route.params.id
     ]
   },
   layout: 'navigation'
