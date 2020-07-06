@@ -70,7 +70,7 @@ export default {
       local: false,
       auth0: {
         domain: 'dev-v-useasu.eu.auth0.com',
-        client_id: this.process.AUTH0_CLIENT_ID
+        client_id: process.AUTH0_CLIENT_ID
       }
     }
   },
