@@ -1,6 +1,6 @@
-# AgeWage-nuxt
+# Article Manager Nuxt
 
-> ageWage Assigment
+> "An article manager where to create, update, delete articles and view articles from other users
 
 ## Build Setup
 

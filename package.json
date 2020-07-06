@@ -1,7 +1,7 @@
 {
-  "name": "AgeWage-nuxt",
+  "name": "Article Manager Nuxt",
   "version": "1.0.0",
-  "description": "ageWage Assigment",
+  "description": "An article manager where to create, update, delete articles and view articles from other users",
   "author": "Vincenzo",
   "private": true,
   "scripts": {
