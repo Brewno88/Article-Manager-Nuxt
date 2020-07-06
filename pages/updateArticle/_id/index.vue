@@ -109,7 +109,7 @@ export default {
   layout: 'navigation',
   mounted() {
     this.article = JSON.parse(localStorage.getItem('articles'))[
-      this.$route.params.id
+      this.$nuxt.$route.params.id
     ]
   },
   methods: {
@@ -117,7 +117,7 @@ export default {
     updateArticle() {
       let tempObj = {}
       tempObj = JSON.parse(localStorage.getItem('articles'))
-      tempObj[this.$route.params.id] = this.article
+      tempObj[this.$nuxt.$route.params.id] = this.article
       localStorage.setItem('articles', JSON.stringify(tempObj))
       // return to homepage
       window.location.href = window.location.origin
@@ -127,7 +127,7 @@ export default {
       let tempObj = {}
 
       tempObj = JSON.parse(localStorage.getItem('articles'))
-      tempObj.splice(tempObj[this.$route.params.id], 1)
+      tempObj.splice(tempObj[this.$nuxt.$route.params.id], 1)
       localStorage.setItem('articles', JSON.stringify(tempObj))
       // return to homepage
       window.location.href = window.location.origin

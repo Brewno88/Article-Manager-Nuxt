@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- If user Logged In show Logout button, else Login/Register Button -->
-    <div v-if="$auth.loggedIn" class="d-flex flex-column-reverse align-center">
+    <div
+      v-if="this.$nuxt.$auth.loggedIn"
+      class="d-flex flex-column-reverse align-center"
+    >
       <v-btn color="warning" small @click="logoutUser()">
         <h3>Log Out</h3>
       </v-btn>
@@ -19,10 +22,10 @@ export default {
   name: 'Account',
   methods: {
     loginUser(loginInfo) {
-      this.$auth.loginWith('auth0')
+      this.$nuxt.$auth.loginWith('auth0')
     },
     logoutUser() {
-      this.$auth.logout()
+      this.$nuxt.$auth.logout()
     }
   }
 }

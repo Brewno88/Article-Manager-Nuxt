@@ -56,7 +56,7 @@ export default {
     return {
       article: {
         id: 0,
-        author: this.$auth.user.email,
+        author: this.$nuxt.$auth.user ? this.$nuxt.$auth.user.email : undefined,
         date: '',
         title: '',
         description: '',
