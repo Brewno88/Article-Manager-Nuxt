@@ -25,7 +25,7 @@ export default {
    */
   loading: {
     name: 'chasing-dots',
-    color: '#ff5638',
+    color: '#272727',
     background: 'white',
     height: '4px'
   },
@@ -52,11 +52,11 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/auth',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/pwa'
   ],
   /*
   Auth0 Configuration

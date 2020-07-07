@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {}
+      env: {"BASE_URL":"http://localhost:3000","AUTH0_CLIENT_ID":"EvD7u8vYN73eh36eXjRToviSUSivc68N"}
     }
     // Only set once
     if (context.req) {
