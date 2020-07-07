@@ -1,7 +1,4 @@
-import path from 'path'
 import colors from 'vuetify/es5/util/colors'
-import PurgecssPlugin from 'purgecss-webpack-plugin'
-import glob from 'glob-all'
 require('dotenv').config()
 
 export default {
@@ -109,21 +106,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extractCSS: true,
-    extend(config, { isDev, isClient }) {
-      if (!isDev && isClient) {
-        config.plugins.push(
-          new PurgecssPlugin({
-            paths: glob.sync([
-              path.join(__dirname, './pages/**/*.vue'),
-              path.join(__dirname, './layouts/**/*.vue'),
-              path.join(__dirname, './components/**/*.vue')
-            ]),
-            whitelist: ['html', 'body']
-          })
-        )
-      }
-    }
+    extend(config, ctx) {}
   }
   // server: {
   //   host: '0.0.0.0'

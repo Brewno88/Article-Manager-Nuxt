@@ -32,10 +32,8 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "glob-all": "^3.2.1",
     "jest": "^24.1.0",
     "prettier": "^1.19.1",
-    "purgecss-webpack-plugin": "^2.3.0",
     "vue-jest": "^4.0.0-0"
   }
 }
