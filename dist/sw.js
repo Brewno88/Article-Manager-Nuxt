@@ -40,12 +40,3 @@ workbox.routing.registerRoute(
   new workbox.strategies.NetworkFirst({}),
   'GET'
 )
-
-workbox.routing.setCatchHandler(({ url, event, params }) => {
-  const strategy = new workbox.strategies.NetworkFirst({
-    networkTimeoutSeconds: 10
-  })
-  return strategy.handle({
-    request: new Request(url)
-  })
-})
