@@ -1,6 +1,15 @@
+👉️ [live-demo](https://article-manager-nuxt.herokuapp.com/)
+
 # Article Manager Nuxt
 
 > "An article manager where to create, update, delete articles and view articles from other users
+
+## Stack
+
+- [Nuxt](https://nuxtjs.org/)
+- [Vuetify](https://vuetifyjs.com/en/)
+- Local Storage
+- [Auth0](https://auth0.com/)
 
 ## Build Setup
 
