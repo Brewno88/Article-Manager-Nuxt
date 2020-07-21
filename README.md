@@ -10,6 +10,7 @@
 - [Vuetify](https://vuetifyjs.com/en/)
 - Local Storage
 - [Auth0](https://auth0.com/)
+- [Heroku](https://www.heroku.com/)
 
 ## Build Setup
 
